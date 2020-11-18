@@ -2,7 +2,7 @@
 class Employee:
     
     emp_id = 1
-    
+    #Adding initial comments    
     def __init__(self, name, age, salary, designation):
         
         self.__empid = Employee.emp_id
