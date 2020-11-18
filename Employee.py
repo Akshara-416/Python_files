@@ -1,4 +1,5 @@
 # Creates the Employee superclass and initializes the attributes
+# This ia the Parent class
 class Employee:
     
     emp_id = 1
