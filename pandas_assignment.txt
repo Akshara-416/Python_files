@@ -1,0 +1,111 @@
+# import pandas, numpy
+# Create the required data frames by reading in the files
+
+# Q1 Find least sales amount for each item
+# has been solved as an example
+A: ---------------------------------------------
+def least_sales(df):
+    # write code to return pandas dataframe
+	ls = df.groupby(["Item"])["Sale_amt"].min().reset_index()
+    return ls
+
+# Q2 compute total sales at each year X region
+def sales_year_region(df):
+    # write code to return pandas dataframe
+A: ---------------------------------------------
+     import datetime as dt
+     def sales_year_region(df):
+    	# write code to return pandas dataframe
+    	ts=df.groupby([df["OrderDate"].astype('datetime64[ns]').dt.year,"Region"])["Sale_amt"].sum().reset_index()
+    	return ts
+# Q3 append column with no of days difference from present date to each order date
+def days_diff(df):
+    # write code to return pandas dataframe
+A: ---------------------------------------------
+def days_diff(df):
+    # write code to return pandas dataframe
+    #df['days_diff']=dt.date.today
+    df['date']=dt.date.today().strftime("%m/%d/%Y")
+    df['days_diff']=pd.to_datetime(df['date'])-pd.to_datetime(df["OrderDate"])
+    df['days_diff']=df['days_diff']/np.timedelta64(1,'D')
+    print(df['days_diff'])
+
+# Q4 get dataframe with manager as first column and  salesman under them as lists in rows in second column.
+def mgr_slsmn(df):
+    # write code to return pandas dataframe
+A: ---------------------------------------------
+def mgr_slsmn(df):
+    #print(df['Manager'].unique())
+    ls=df.groupby('Manager')[['SalesMan']].sum()
+    return ls
+
+# Q5 For all regions find number of salesman and number of units
+def slsmn_units(df):
+    # write code to return pandas dataframe
+A: ---------------------------------------------
+def slsmn_units(df):
+    ls=df.groupby('Region')[['SalesMan','Units']].count()
+    return ls
+
+# Q6 Find total sales as percentage for each manager
+def sales_pct(df):
+    # write code to return pandas dataframe
+    return q10
+A: ---------------------------------------------
+def sales_pct(df):
+    ls=df.groupby('Manager')[['Sale_amt']].sum()
+    return ls
+# Q7 get imdb rating for fifth movie of dataframe
+def fifth_movie(df):
+	# write code here
+A: ---------------------------------------------
+def fifth_movie(df):
+    ls=df.at[4,'imdbRating']
+    return ls
+# Q8 return titles of movies with shortest and longest run time
+def movies(df):
+	# write code here
+
+# Q9 sort by two columns - release_date (earliest) and Imdb rating(highest to lowest)
+def sort_df(df):
+	# write code here
+A: ---------------------------------------------
+def sort_df(df):
+    ls=df.sort_values(by=['year','imdbRating'],ascending = False).head()
+    return ls
+# Q10 subset revenue more than 2 million and spent less than 1 million & duration between 30 mintues to 180 minutes
+def subset_df(df):
+	# write code here
+
+# Q11 count the duplicate rows of diamonds DataFrame.
+def dupl_rows(df):
+	# write code here
+A: ---------------------------------------------
+def dupl_rows(df):
+    ls=df[df.duplicated()]
+    return ls
+
+# Q12 droping those rows where any value in a row is missing in carat and cut columns
+def drop_row(df):
+	# write code here
+A: ---------------------------------------------
+def drop_row(df):
+    ls=df.dropna(subset=['carat','cut'])
+    return ls
+
+# Q13 subset only numeric columns
+def sub_numeric(df):
+	# write code here
+
+# Q14 compute volume as (x*y*z) when depth > 60 else 8
+def volume(df):
+	# write code here
+
+# Q15 impute missing price values with mean
+def impute(df):
+	# write code here
+A: ---------------------------------------------
+def impute(df):
+    mean=df['price'].mean()
+    ls=df['price'].fillna(mean)
+    return ls
